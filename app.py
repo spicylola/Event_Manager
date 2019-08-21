@@ -41,10 +41,23 @@ def cru_events():
 
 
     # TODO: Filter by USER ID
-    #if request.method == 'GET':
-    #if key not in notes:
-    #    raise exceptions.NotFound()
-    #return note_repr(key)
+    if request.method == 'GET':
+       params = request.args
+             
+       if "show_all" in params:
+           event_info = db.session.query(Events).filter(Events.status == "approved").all()
+           print(str(event_info))
+           return str(event_info)
+       if "pending_admin" in params:
+           event_info = db.session.query(Events).filter(Events.status == "pending").all()
+           print(str(event_info))
+           return str(event_info)
+       if "created_by" in params and params.get('created_by') is not None:
+           event_info = db.session.query(Events).filter(Events.id == params.get('created_by')).all()
+           print(str(event_info))
+           return str(event_info)
+       return "Error Processing Dict"
+ 
 
 if __name__ == '__main__':
     app.run()
