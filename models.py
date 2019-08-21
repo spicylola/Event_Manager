@@ -21,6 +21,11 @@ class Events(db.Model):
     description = db.Column(db.String())
     location = db.Column(db.String())
     status = db.Column(db.String())
+    
+    def update(self, **kwargs):
+        for key, value in kwargs.items():
+            print(key)
+            setattr(self, key, value)
 
     def __repr__(self):
         return '<id {}>'.format(self.id)

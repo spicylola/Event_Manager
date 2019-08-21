@@ -30,8 +30,15 @@ def cru_events():
        return str(event_data)
 
     if request.method == 'PUT':
-        event_data = str(request.data.get('events'))
-        return event_data
+       raw_event_data = request.get_json()
+       event_id = raw_event_data.pop("id")
+       print(event_id)
+       event_info = db.session.query(Events).filter(Events.id ==event_id)
+       print(event_info)
+       event_info.update(raw_event_data['events'])       
+       db.session.commit()
+       return str(raw_event_data)
+
 
     # TODO: Filter by USER ID
     #if request.method == 'GET':
