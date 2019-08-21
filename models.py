@@ -18,7 +18,7 @@ class Events(db.Model):
     created_by = db.Column(db.Integer)
     start_time = db.Column(db.DateTime, nullable=True)
     end_time = db.Column(db.DateTime, nullable=True)
-    description = db.Column(JSON)
+    description = db.Column(db.String())
     location = db.Column(db.String())
     status = db.Column(db.String())
 
