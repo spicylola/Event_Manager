@@ -21,13 +21,15 @@ class Events(db.Model):
     description = db.Column(db.String())
     location = db.Column(db.String())
     status = db.Column(db.String())
-    
+    image_url = db.Column(db.String())
+    registration_link = db.Column(db.String())
+ 
     def update(self, **kwargs):
         for key, value in kwargs.items():
             print(key)
             setattr(self, key, value)
 
     def __repr__(self):
-        data_dict ={"id": self.id, "name": self.name, "created_by": self.created_by, "start_time": self.start_time, "end_time": self.end_time, "description": self.description, "location":self.location, "status": self.status}
+        data_dict ={"id": self.id, "name": self.name, "created_by": self.created_by, "start_time": self.start_time, "end_time": self.end_time, "description": self.description, "location":self.location, "status": self.status,"image_url": self.image_url, "registration_link": self.registration_link}
         return str(data_dict)
         #return '<id {}>'.format(self.id)
