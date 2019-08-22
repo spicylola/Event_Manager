@@ -28,5 +28,6 @@ class Events(db.Model):
             setattr(self, key, value)
 
     def __repr__(self):
-        return {"id": self.id, "name": self.name, "created_by": self.created_by, "start_time": self.start_time, "end_time": self.end_time, "description": self.description, "location":self.location, "status": self.status}
+        data_dict ={"id": self.id, "name": self.name, "created_by": self.created_by, "start_time": self.start_time, "end_time": self.end_time, "description": self.description, "location":self.location, "status": self.status}
+        return str(data_dict)
         #return '<id {}>'.format(self.id)
