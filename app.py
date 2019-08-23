@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 from models import *
 
-app = Flask(__name__)
+
 CORS(app, support_credentials=True)
 
 
