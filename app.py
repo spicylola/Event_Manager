@@ -1,21 +1,30 @@
 import os
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS, cross_origin
 import json
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 print(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-cors = CORS(app)
+#cors = CORS(app)
 db = SQLAlchemy(app)
 from models import *
+
+app = Flask(__name__)
+CORS(app, support_credentials=True)
+
+
+
+
 
 @app.route('/')
 def hello():
     return "Hello World!"
 
 @app.route("/events", methods=['GET', 'PUT', 'POST'])
+@cross_origin(supports_credentials=True)
 def cru_events():
     """
     Retrieve, update or create admin/regular users.
